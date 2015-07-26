@@ -1,0 +1,7 @@
+name: Publish Document
+account: rpubs
+server: rpubs.com
+bundleId:
+        https://api.rpubs.com/api/v1/document/96385/3b413c9675f049868f74e8988aa4da24
+url: http://rpubs.com/dotkwame/96385
+when: 1437934989.74195

@@ -1,5 +1,5 @@
 ---
-title: "Reproducible Resesearch: Peer Assessment 2"
+title: "Reproducible Research: Peer Assessment 2"
 author: "Kwamena Appiah-Kubi"
 date: "26 July 2015"
 output: html_document
@@ -27,8 +27,8 @@ library(ggplot2)
 
 total_pop_impact_by_event <- storm_data[, .(total_impact = sum(FATALITIES + INJURIES)), by = c("EVTYPE")]
 
-
 ```
+
 ```{r echo=TRUE}
 qplot(EVTYPE, data = total_pop_impact_by_event[total_impact > 100], weight = total_impact) + 
         geom_bar() + 
@@ -43,7 +43,7 @@ qplot(EVTYPE, data = total_pop_impact_by_event[total_impact > 100], weight = tot
 From the plot tornada causes the most sever impact on population health, followed by exessive heat and lightning.
 
 
-```{r echo=TRUE}
+```{r echo=TRUE, results='hide'}
 
 economic_impact_data <- storm_data[, .(EVTYPE, PROPDMG, PROPDMGEXP, CROPDMG, CROPDMGEXP)]
 economic_impact_data <- economic_impact_data[complete.cases(economic_impact_data)]
@@ -58,7 +58,9 @@ total_economic_impact_by_event <- economic_impact_data[, .(total_impact = sum(CR
 total_economic_impact_by_event <- total_economic_impact_by_event[total_impact > 1000000]
 
 total_economic_impact_by_event[, total_impact := total_impact / 1000000]
+```
 
+```{r echo=TRUE}
 qplot(EVTYPE, data = total_economic_impact_by_event, weight = total_impact) + 
         geom_bar() + 
         ylab("Total value in $1M") +
